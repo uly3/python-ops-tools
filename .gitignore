@@ -216,3 +216,13 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
+
+#My addtions
+*.pyc
+.venv/
+*.db
+*.sqlite
+*.zip
+report.json
+out.csv
+summary.txt
