@@ -1,4 +1,4 @@
-import re, argparse, sys, random
+import re, argparse, sys
 from pathlib import Path
 
 create_parser = argparse.ArgumentParser(description="Validates a config/env file before it gets deployed")
@@ -36,11 +36,11 @@ with open(path_to_config_env_file, 'r', encoding='utf-8') as env_config_obj:
         if not stripped or stripped.startswith('#'):
             continue
 
-        match = variable_regex.search(line)
+        match = variable_regex.search(stripped)
 
         if match is None:
             print(f'Line Number {code_line_number}: There is malformed code here. Line: ', end='')
-            print(line)
+            print(stripped)
             number_of_malform_variables += 1
             continue
 
@@ -51,7 +51,7 @@ with open(path_to_config_env_file, 'r', encoding='utf-8') as env_config_obj:
 
         if parser.verbose:
             if any(word in variable.upper() for word in SENSITIVE):
-                print(f'{variable}='+ random.randint(1,10) * '*')        
+                print(f'{variable}=***')        
             else:
                 print(f'{variable}={value}')
 
@@ -74,5 +74,5 @@ if number_of_malform_variables == 0 and missing_required_keys == 0:
     print(f'\nSUCCESS!!! CONFIG FILE IS VALID & NOT MISSING REQUIRED KEYS!!!')
     sys.exit(0)
 else:
-    print(f'\nERROR!!! CONFIG FILE IS NOT VALID & MISSING REQUIRED KEYS!!!')
+    print(f'\nERROR!!! CONFIG FILE IS NOT VALID & MISSING REQUIRED KEYS!!!', file=sys.stderr)
     sys.exit(1)
