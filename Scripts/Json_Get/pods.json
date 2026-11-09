@@ -1,0 +1,9 @@
+{
+  "items": [
+    {"metadata": {"name": "web-01"}, "status": {"phase": "Running", "restarts": 0}},
+    {"metadata": {"name": "web-02"}, "status": {"phase": "Running", "restarts": 3}},
+    {"metadata": {"name": "db-01"}, "status": {"phase": "Failed", "restarts": 7}},
+    {"metadata": {"name": "cache-01"}, "status": {"phase": "Running"}},
+    {"metadata": {"name": "worker-01"}, "status": {"phase": "Pending", "restarts": 1}}
+  ]
+}
